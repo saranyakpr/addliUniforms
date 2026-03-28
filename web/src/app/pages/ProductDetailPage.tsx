@@ -23,7 +23,7 @@ export function ProductDetailPage() {
           <h2 className="text-2xl font-bold mb-4 text-foreground">Product not found</h2>
           <button
             onClick={() => navigate('/shop')}
-            className="bg-primary text-white px-6 py-3 rounded-xl font-semibold text-sm"
+            className="bg-accent text-white px-6 py-3 rounded-xl font-semibold text-sm"
           >
             Back to Shop
           </button>
@@ -88,7 +88,7 @@ export function ProductDetailPage() {
 
           {/* Info */}
           <div className="flex flex-col">
-            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-2">
+            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-2">
               {product.category}
             </span>
             <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">
@@ -136,8 +136,8 @@ export function ProductDetailPage() {
                     onClick={() => setSelectedSize(size)}
                     className={`min-w-[44px] px-4 py-2 border-2 rounded-xl text-sm font-medium transition-colors ${
                       selectedSize === size
-                        ? 'border-primary bg-primary text-white'
-                        : 'border-border hover:border-primary/40'
+                        ? 'border-accent bg-accent text-white'
+                        : 'border-border hover:border-accent/40'
                     }`}
                   >
                     {size}
@@ -156,8 +156,8 @@ export function ProductDetailPage() {
                     onClick={() => setSelectedColor(color)}
                     className={`relative px-4 py-2 border-2 rounded-xl text-sm font-medium transition-colors ${
                       selectedColor === color
-                        ? 'border-primary bg-primary text-white'
-                        : 'border-border hover:border-primary/40'
+                        ? 'border-accent bg-accent text-white'
+                        : 'border-border hover:border-accent/40'
                     }`}
                   >
                     {color}
@@ -192,7 +192,7 @@ export function ProductDetailPage() {
             {/* Add to Cart */}
             <button
               onClick={handleAddToCart}
-              className="w-full bg-primary text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors mb-4"
+              className="w-full bg-accent text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-accent/90 transition-colors mb-4"
             >
               Add to Cart — ${product.price * quantity}
             </button>
@@ -200,8 +200,8 @@ export function ProductDetailPage() {
             {/* Trust */}
             <div className="border-t border-border pt-5 space-y-3 mt-2">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                  <Truck className="w-4 h-4 text-primary" />
+                <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                  <Truck className="w-4 h-4 text-accent" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Free Shipping</p>
@@ -209,8 +209,8 @@ export function ProductDetailPage() {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                  <Shield className="w-4 h-4 text-primary" />
+                <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                  <Shield className="w-4 h-4 text-accent" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Quality Guarantee</p>

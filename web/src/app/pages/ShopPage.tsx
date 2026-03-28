@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { SlidersHorizontal, ChevronDown, X, Search, PackageOpen } from 'lucide-react';
+import { Search, ChevronDown, X, PackageOpen } from 'lucide-react';
 import { products, categories } from '../data/products';
 import { ProductCard } from '../components/ProductCard';
 
@@ -61,112 +61,95 @@ export function ShopPage() {
     <div className="min-h-screen bg-background">
       {/* Page header */}
       <div className="bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-1.5 block">
-                Browse
-              </span>
-              <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
-                Shop Collection
-              </h1>
-              <p className="text-muted-foreground text-sm sm:text-base mt-1">
-                Premium uniforms designed for every team and industry.
-              </p>
-            </div>
-            {/* Search */}
-            <div className="relative w-full sm:w-72">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-background border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-              />
-            </div>
-          </div>
-
-          {/* Category pills — horizontal scroll */}
-          <div className="flex gap-2 mt-6 overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => handleCategoryChange(category)}
-                className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedCategory === category
-                    ? 'bg-primary text-white'
-                    : 'bg-secondary text-foreground hover:bg-secondary/80'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground tracking-tight mb-1">
+            Our Uniform Collections
+          </h1>
+          <p className="text-muted-foreground text-sm">
+            Browse our full range of professional uniforms.
+          </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col lg:flex-row gap-6">
           {/* ─── Sidebar ─── */}
-          <aside className="lg:w-56 xl:w-60 shrink-0">
-            {/* Mobile filter toggle */}
+          <aside className="lg:w-52 xl:w-56 shrink-0">
+            {/* Mobile toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="lg:hidden flex items-center justify-between w-full bg-white border border-border px-4 py-2.5 rounded-xl text-sm font-medium mb-4"
+              className="lg:hidden flex items-center justify-between w-full bg-white border border-border px-4 py-2.5 rounded-lg text-sm font-medium mb-4"
             >
-              <span className="flex items-center gap-2">
-                <SlidersHorizontal className="w-4 h-4" />
-                Filters
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`}
-              />
+              <span>Filters</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
             </button>
 
-            <div
-              className={`${
-                showFilters ? 'block' : 'hidden'
-              } lg:block space-y-6`}
-            >
-              {/* Price Range */}
-              <div className="bg-white rounded-2xl border border-border p-4 sm:p-5">
-                <h3 className="font-semibold text-sm text-foreground mb-3">
-                  Price Range
-                </h3>
-                <div className="space-y-2.5">
-                  {['Under $500', '$500 – $1000', '$1000 – $1500', 'Over $1500'].map(
-                    (range) => (
-                      <label
-                        key={range}
-                        className="flex items-center gap-2.5 cursor-pointer group"
-                      >
-                        <input
-                          type="checkbox"
-                          className="w-4 h-4 rounded border-border text-primary focus:ring-primary/30 accent-primary"
-                        />
-                        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                          {range}
-                        </span>
-                      </label>
-                    )
-                  )}
+            <div className={`${showFilters ? 'block' : 'hidden'} lg:block space-y-4`}>
+              {/* Search */}
+              <div className="bg-white rounded-lg border border-border p-3">
+                <div className="flex items-center gap-2">
+                  <Search className="w-4 h-4 text-muted-foreground shrink-0" />
+                  <input
+                    type="text"
+                    placeholder="Search by name or code"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="bg-transparent text-sm w-full focus:outline-none placeholder:text-muted-foreground"
+                  />
+                </div>
+              </div>
+
+              {/* Category */}
+              <div className="bg-white rounded-lg border border-border p-3">
+                <h3 className="font-semibold text-sm text-foreground mb-2">Category</h3>
+                <div className="space-y-1">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => handleCategoryChange(category)}
+                      className={`block w-full text-left px-2.5 py-1.5 rounded text-sm transition-colors ${
+                        selectedCategory === category
+                          ? 'bg-accent/10 text-accent font-medium'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
                 </div>
               </div>
 
               {/* Size */}
-              <div className="bg-white rounded-2xl border border-border p-4 sm:p-5">
-                <h3 className="font-semibold text-sm text-foreground mb-3">
-                  Size
-                </h3>
-                <div className="flex flex-wrap gap-2">
+              <div className="bg-white rounded-lg border border-border p-3">
+                <h3 className="font-semibold text-sm text-foreground mb-2">Size</h3>
+                <div className="flex flex-wrap gap-1.5">
                   {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
                     <button
                       key={size}
-                      className="min-w-[40px] px-3 py-1.5 border border-border rounded-lg text-sm text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                      className="min-w-[36px] px-2.5 py-1 border border-border rounded text-xs text-muted-foreground hover:border-accent hover:text-accent transition-colors"
                     >
                       {size}
                     </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Color */}
+              <div className="bg-white rounded-lg border border-border p-3">
+                <h3 className="font-semibold text-sm text-foreground mb-2">Color</h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { name: 'Navy', color: 'bg-blue-900' },
+                    { name: 'White', color: 'bg-white border-2' },
+                    { name: 'Black', color: 'bg-black' },
+                    { name: 'Grey', color: 'bg-gray-400' },
+                    { name: 'Red', color: 'bg-red-600' },
+                  ].map((c) => (
+                    <button
+                      key={c.name}
+                      title={c.name}
+                      className={`w-6 h-6 rounded-full ${c.color} hover:ring-2 hover:ring-accent hover:ring-offset-1 transition-all`}
+                    />
                   ))}
                 </div>
               </div>
@@ -175,17 +158,17 @@ export function ShopPage() {
 
           {/* ─── Products ─── */}
           <div className="flex-1 min-w-0">
-            {/* Sort bar */}
-            <div className="flex items-center justify-between mb-5">
+            {/* Sort */}
+            <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-muted-foreground">
                 <span className="font-semibold text-foreground">{filteredProducts.length}</span>{' '}
-                {filteredProducts.length === 1 ? 'product' : 'products'}
+                products
                 {selectedCategory !== 'All' && (
-                  <span className="inline-flex items-center gap-1 ml-2 bg-primary/10 text-primary text-xs font-medium px-2 py-0.5 rounded-full">
+                  <span className="inline-flex items-center gap-1 ml-2 bg-accent/10 text-accent text-xs font-medium px-2 py-0.5 rounded">
                     {selectedCategory}
                     <button
                       onClick={() => handleCategoryChange('All')}
-                      className="hover:bg-primary/20 rounded-full p-0.5 transition-colors"
+                      className="hover:bg-accent/20 rounded-full p-0.5"
                     >
                       <X className="w-3 h-3" />
                     </button>
@@ -195,7 +178,7 @@ export function ShopPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 bg-white border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all cursor-pointer"
+                className="px-3 py-1.5 bg-white border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent/20 cursor-pointer"
               >
                 <option value="featured">Featured</option>
                 <option value="price-low">Price: Low to High</option>
@@ -206,26 +189,26 @@ export function ShopPage() {
 
             {/* Grid */}
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-20 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center mb-4">
-                  <PackageOpen className="w-7 h-7 text-muted-foreground" />
+                <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-3">
+                  <PackageOpen className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <p className="text-foreground font-semibold mb-1">No products found</p>
                 <p className="text-sm text-muted-foreground max-w-xs">
-                  Try adjusting your filters or search to find what you're looking for.
+                  Try adjusting your filters or search.
                 </p>
                 <button
                   onClick={() => {
                     handleCategoryChange('All');
                     setSearchQuery('');
                   }}
-                  className="mt-4 text-sm font-semibold text-primary hover:underline underline-offset-4"
+                  className="mt-3 text-sm font-semibold text-accent hover:underline"
                 >
                   Clear all filters
                 </button>

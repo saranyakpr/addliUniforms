@@ -5,9 +5,14 @@ import {
   Truck,
   Users,
   Scissors,
+  GraduationCap,
+  Building2,
+  Stethoscope,
+  Hotel,
+  HardHat,
   Star,
   CheckCircle,
-  Send,
+  Quote,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { products } from '../data/products';
@@ -16,55 +21,27 @@ import { ClientCrousal } from '../../common/Dashboard/ClientCrousal';
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
-const features = [
-  {
-    icon: Shield,
-    title: 'Premium Fabrics',
-    desc: 'Durable, breathable materials built for everyday wear.',
-    color: 'bg-teal-50 text-teal-700',
-  },
-  {
-    icon: Scissors,
-    title: 'Custom Tailoring',
-    desc: 'Fitted to your team\'s exact measurements.',
-    color: 'bg-amber-50 text-amber-700',
-  },
-  {
-    icon: Users,
-    title: 'Bulk Orders',
-    desc: 'Teams of 10 or 10,000 — with volume pricing.',
-    color: 'bg-indigo-50 text-indigo-700',
-  },
-  {
-    icon: Truck,
-    title: 'Fast Delivery',
-    desc: 'Express shipping in 3–5 business days.',
-    color: 'bg-rose-50 text-rose-700',
-  },
+const uniformCategories = [
+  { icon: GraduationCap, label: 'School', color: 'bg-blue-50 text-blue-600 border-blue-100' },
+  { icon: Building2, label: 'Corporate', color: 'bg-slate-50 text-slate-600 border-slate-100' },
+  { icon: Stethoscope, label: 'Healthcare', color: 'bg-emerald-50 text-emerald-600 border-emerald-100' },
+  { icon: Hotel, label: 'Hospitality', color: 'bg-amber-50 text-amber-600 border-amber-100' },
+  { icon: HardHat, label: 'Industrial', color: 'bg-orange-50 text-orange-600 border-orange-100' },
 ];
 
-const categories = [
-  {
-    label: 'Corporate',
-    tagline: 'Boardroom ready',
-    to: '/shop?category=Suits',
-    image:
-      'https://images.unsplash.com/photo-1770582071587-dbbb4b09c2a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwbWFuJTIwZm9ybWFsJTIwd2VhcnxlbnwxfHx8fDE3NzA4MDUyNzN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    label: 'Professional',
-    tagline: 'Built for the job',
-    to: '/shop?category=Formal',
-    image:
-      'https://images.unsplash.com/photo-1630173250799-2813d34ed14b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVtaXVtJTIwbWVuJTIwYmxhemVyJTIwb3V0Zml0fGVufDF8fHx8MTc3MDgwNTI3M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    label: 'Casual',
-    tagline: 'Comfortable & sharp',
-    to: '/shop?category=Shirts',
-    image:
-      'https://images.unsplash.com/photo-1737574821698-862e77f044c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxleGVjdXRpdmUlMjBtYW4lMjBwcm9mZXNzaW9uYWwlMjB3ZWFyfGVufDF8fHx8MTc3MDgwNTI3NXww&ixlib=rb-4.1.0&q=80&w=1080',
-  },
+const features = [
+  { icon: Shield, title: 'Premium Quality', desc: 'Durable fabrics built for everyday professional use.' },
+  { icon: Scissors, title: 'Custom Tailoring', desc: 'Fitted to your team\'s exact specifications.' },
+  { icon: Users, title: 'Bulk Orders', desc: 'Volume pricing for teams of any size.' },
+  { icon: Truck, title: 'Fast Delivery', desc: 'Quick turnaround in 3–5 business days.' },
+];
+
+const journeyMilestones = [
+  { year: '2014', title: 'The Beginning', desc: 'Founded with a mission to make professional uniforms accessible and affordable.' },
+  { year: '2017', title: 'Expanding to Education', desc: 'Partnered with over 50 schools to provide quality school uniforms.' },
+  { year: '2020', title: 'Serving Healthcare', desc: 'Began supplying scrubs and medical wear to hospitals nationwide.' },
+  { year: '2022', title: 'Corporate & Hospitality', desc: 'Expanded into corporate suits and hotel staff uniforms.' },
+  { year: '2024', title: 'Nationwide Reach', desc: 'Now serving 50+ organizations with a 99% client retention rate.' },
 ];
 
 export function HomePage() {
@@ -72,128 +49,100 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ─── HERO — split layout ─── */}
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-12 sm:py-16 lg:py-10">
-            {/* Left — text */}
-            <div className="order-2 lg:order-1">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, ease }}
-              >
-                <span className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full mb-5">
-                  <Star className="w-3.5 h-3.5 fill-accent text-accent" />
-                  Trusted by 50+ organizations
-                </span>
-              </motion.div>
-
-              <motion.h1
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-foreground leading-[1.15] tracking-tight mb-5"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.1, ease }}
-              >
-                Uniforms that
-                <span className="text-primary"> build identity</span> for
-                your team
-              </motion.h1>
-
-              <motion.p
-                className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8 max-w-lg"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2, ease }}
-              >
-                From corporate offices to hospitality — we design, tailor,
-                and deliver premium uniforms that make your team look and
-                feel their best.
-              </motion.p>
-
-              <motion.div
-                className="flex flex-col sm:flex-row gap-3 mb-8"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.3, ease }}
-              >
+      {/* ─── HERO ─── */}
+      <section className="relative bg-primary overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.15)_0%,transparent_60%)]" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-14 sm:py-16 lg:py-20">
+            {/* Text */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease }}
+            >
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] tracking-tight mb-5">
+                Quality Uniforms for
+                <span className="text-accent"> Every Profession</span>
+              </h1>
+              <p className="text-blue-100/80 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 max-w-lg">
+                From corporate offices to classrooms and hospitals — we design,
+                manufacture, and deliver premium uniforms your team will be proud to wear.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/shop"
-                  className="group inline-flex items-center justify-center gap-2 bg-primary text-white px-6 py-3 sm:py-3.5 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors"
+                  className="group inline-flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-accent/90 transition-colors"
                 >
-                  Explore Collection
+                  Explore Products
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
                 <Link
-                  to="/shop?category=Suits"
-                  className="inline-flex items-center justify-center gap-2 border-2 border-border text-foreground px-6 py-3 sm:py-3.5 rounded-xl font-semibold text-sm hover:bg-secondary transition-colors"
+                  to="#"
+                  className="inline-flex items-center justify-center gap-2 border border-white/25 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-white/10 transition-colors"
                 >
-                  Get a Quote
+                  Contact Us
                 </Link>
-              </motion.div>
+              </div>
+            </motion.div>
 
-              <motion.div
-                className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm text-muted-foreground"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-primary" /> Free shipping on bulk
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-primary" /> Custom branding
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-primary" /> Quality guaranteed
-                </span>
-              </motion.div>
-            </div>
-
-            {/* Right — image */}
+            {/* Image */}
             <motion.div
-              className="order-1 lg:order-2 relative"
+              className="relative hidden lg:block"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.15, ease }}
             >
-              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] lg:aspect-[4/5] max-h-[420px] lg:max-h-[480px] mx-auto lg:mx-0 w-full">
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] max-h-[440px]">
                 <img
                   src="https://images.unsplash.com/photo-1761522001672-5f1d45ce1b10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBtZW4lMjBmYXNoaW9uJTIwbW9kZWwlMjBzdWl0fGVufDF8fHx8MTc3MDgwNTI3M3ww&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Premium uniforms"
+                  alt="Professional uniforms"
                   className="w-full h-full object-cover"
                 />
-              </div>
-              {/* Floating trust card */}
-              <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 bg-white rounded-xl sm:rounded-2xl shadow-xl shadow-black/10 p-3 sm:p-4 flex items-center gap-3">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-lg sm:text-xl font-bold text-foreground leading-none">10K+</p>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Uniforms delivered</p>
-                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ─── FEATURES — horizontal cards ─── */}
-      <section className="py-12 sm:py-16 border-y border-border bg-white">
+      {/* ─── WHO WE ARE ─── */}
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <motion.div
+            className="max-w-3xl mx-auto text-center"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5, ease }}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-4">
+              Who We Are
+            </h2>
+            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6">
+              Addli Uniforms is a leading manufacturer and supplier of professional
+              uniforms. We combine quality materials, expert tailoring, and reliable
+              delivery to outfit teams across schools, hospitals, corporations, hotels,
+              and industrial workplaces.
+            </p>
+            <p className="text-accent font-semibold text-sm">
+              ADDLI UNIFORMS — Delivering Quality Through Uniforms
+            </p>
+          </motion.div>
+
+          {/* Features */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-10 sm:mt-14">
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
-                className="bg-background rounded-2xl p-4 sm:p-5 hover:shadow-md hover:shadow-black/5 transition-shadow duration-300"
+                className="text-center p-4 sm:p-5"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.4, delay: i * 0.08, ease }}
               >
-                <div className={`inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${f.color} mb-3`}>
-                  <f.icon className="w-5 h-5 sm:w-[22px] sm:h-[22px]" strokeWidth={1.8} />
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-accent/10 text-accent mb-3">
+                  <f.icon className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.8} />
                 </div>
                 <h3 className="font-semibold text-sm sm:text-base text-foreground mb-1">
                   {f.title}
@@ -207,46 +156,8 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ─── FEATURED PRODUCTS ─── */}
-      <section className="py-14 sm:py-20 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.4, ease }}
-          >
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-2 block">
-                Bestsellers
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
-                Featured Collection
-              </h2>
-            </div>
-            <Link
-              to="/shop"
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline underline-offset-4"
-            >
-              View all
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-          </motion.div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── CLIENT CAROUSEL ─── */}
-      <ClientCrousal />
-
-      {/* ─── CATEGORIES ─── */}
-      <section className="py-14 sm:py-20 lg:py-24">
+      {/* ─── UNIFORM CATEGORIES ─── */}
+      <section className="py-14 sm:py-20 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-8 sm:mb-12"
@@ -255,47 +166,33 @@ export function HomePage() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.4, ease }}
           >
-            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-2 block">
-              Categories
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">
-              Uniforms for Every Industry
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
+              Our Uniform Categories
             </h2>
-            <p className="text-muted-foreground text-sm sm:text-base max-w-lg mx-auto">
-              Whether it's the office, the floor, or the field — we've got you covered.
+            <p className="text-blue-100/60 text-sm sm:text-base max-w-lg mx-auto">
+              Craft the perfect look for any profession and industry.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-            {categories.map((cat, i) => (
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8">
+            {uniformCategories.map((cat, i) => (
               <motion.div
                 key={cat.label}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: i * 0.1, ease }}
+                transition={{ duration: 0.4, delay: i * 0.08, ease }}
               >
                 <Link
-                  to={cat.to}
-                  className="group relative block h-64 sm:h-72 lg:h-80 overflow-hidden rounded-2xl"
+                  to="/shop"
+                  className="group flex flex-col items-center gap-3 w-28 sm:w-32"
                 >
-                  <img
-                    src={cat.image}
-                    alt={cat.label}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                    <p className="text-white/60 text-xs uppercase tracking-wider mb-1">
-                      {cat.tagline}
-                    </p>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
-                      {cat.label}
-                    </h3>
+                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 ${cat.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 bg-white`}>
+                    <cat.icon className="w-7 h-7 sm:w-8 sm:h-8" strokeWidth={1.5} />
                   </div>
-                  <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ArrowRight className="w-4 h-4 text-white" />
-                  </div>
+                  <span className="text-white text-xs sm:text-sm font-medium text-center">
+                    {cat.label}
+                  </span>
                 </Link>
               </motion.div>
             ))}
@@ -303,37 +200,151 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ─── NEWSLETTER ─── */}
-      <section className="py-14 sm:py-20">
+      {/* ─── FEATURED PRODUCTS ─── */}
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="bg-primary rounded-2xl sm:rounded-3xl p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-12"
+            className="text-center mb-8 sm:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.4, ease }}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">
+              Featured Products
+            </h2>
+            <p className="text-muted-foreground text-sm sm:text-base max-w-lg mx-auto">
+              Discover our top-quality uniforms crafted for comfort and durability.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          <div className="text-center mt-8 sm:mt-10">
+            <Link
+              to="/shop"
+              className="group inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-accent/90 transition-colors"
+            >
+              View All Products
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── OUR JOURNEY ─── */}
+      <section className="py-14 sm:py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-10 sm:mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.4, ease }}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">
+              Our Journey
+            </h2>
+            <p className="text-muted-foreground text-sm sm:text-base max-w-lg mx-auto">
+              From a small workshop to serving organizations nationwide — here's how we grew.
+            </p>
+          </motion.div>
+
+          {/* Timeline */}
+          <div className="relative max-w-3xl mx-auto">
+            {/* Line */}
+            <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-border sm:-translate-x-px" />
+
+            {journeyMilestones.map((m, i) => (
+              <motion.div
+                key={m.year}
+                className={`relative flex items-start gap-4 sm:gap-0 mb-10 last:mb-0 ${
+                  i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+                }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: i * 0.08, ease }}
+              >
+                {/* Dot */}
+                <div className="absolute left-4 sm:left-1/2 w-3 h-3 bg-accent rounded-full border-2 border-white shadow-sm -translate-x-1.5 sm:-translate-x-1.5 mt-1.5 z-10" />
+
+                {/* Content */}
+                <div className={`ml-10 sm:ml-0 sm:w-1/2 ${i % 2 === 0 ? 'sm:pr-10 sm:text-right' : 'sm:pl-10'}`}>
+                  <span className="inline-block bg-accent/10 text-accent text-xs font-bold px-2.5 py-1 rounded-md mb-2">
+                    {m.year}
+                  </span>
+                  <h3 className="font-bold text-foreground text-sm sm:text-base mb-1">
+                    {m.title}
+                  </h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                    {m.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CLIENTS ─── */}
+      <ClientCrousal />
+
+      {/* ─── TESTIMONIAL ─── */}
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, ease }}
           >
-            <div className="lg:max-w-md">
-              <div className="inline-flex items-center justify-center w-10 h-10 bg-white/15 rounded-xl mb-4">
-                <Send className="w-5 h-5 text-white" strokeWidth={1.5} />
+            <Quote className="w-10 h-10 text-accent/30 mx-auto mb-4" />
+            <blockquote className="text-base sm:text-lg lg:text-xl text-foreground leading-relaxed font-medium italic mb-6">
+              "The quality and service from Addli have been exceptional. Our staff
+              loves the uniforms — they're comfortable and truly professional. We
+              wouldn't go anywhere else."
+            </blockquote>
+            <div>
+              <p className="font-bold text-foreground text-sm">The Greenwood Hotel</p>
+              <div className="flex items-center justify-center gap-0.5 mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                ))}
               </div>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight mb-2">
-                Stay in the Loop
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── CTA BANNER ─── */}
+      <section className="py-10 sm:py-14 bg-accent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-between gap-4"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.4, ease }}
+          >
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                Have a Question or Need a Custom Order?
               </h2>
-              <p className="text-white/70 text-sm sm:text-base">
-                Get exclusive offers, new drops, and uniform care tips straight to your inbox.
+              <p className="text-blue-100/80 text-sm">
+                Our uniform consultants are ready to help you find the perfect fit.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 lg:min-w-[380px]">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
-              />
-              <button className="bg-accent text-accent-foreground px-6 py-3 rounded-xl font-semibold text-sm hover:bg-accent/90 transition-colors whitespace-nowrap">
-                Subscribe
-              </button>
-            </div>
+            <Link
+              to="#"
+              className="shrink-0 bg-white text-accent px-6 py-3 rounded-lg font-semibold text-sm hover:bg-white/90 transition-colors"
+            >
+              Get in Touch
+            </Link>
           </motion.div>
         </div>
       </section>

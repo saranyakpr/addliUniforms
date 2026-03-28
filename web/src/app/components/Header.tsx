@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useLocation } from 'react-router';
 import { ShoppingCart, Search, User, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
@@ -8,12 +8,20 @@ const navLinks = [
   { label: 'Products', to: '/shop' },
   { label: 'About Us', to: '#' },
   { label: 'Contact', to: '#' },
+  { label: 'Quotation', to: '/cart' },
 ];
+
+function isActive(pathname: string, to: string) {
+  if (to === '/') return pathname === '/';
+  if (to === '/shop') return pathname === '/shop' || pathname.startsWith('/product/');
+  return pathname.startsWith(to);
+}
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { items } = useCart();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const cartItemsCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -37,17 +45,15 @@ export function Header() {
               <Link
                 key={link.label}
                 to={link.to}
-                className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  isActive(pathname, link.to)
+                    ? 'text-accent'
+                    : 'text-muted-foreground hover:text-accent'
+                }`}
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              to="/shop"
-              className="px-3 py-2 text-sm font-medium text-accent"
-            >
-              Quotation
-            </Link>
           </nav>
 
           {/* Right */}
@@ -87,7 +93,7 @@ export function Header() {
       {/* Mobile Nav */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 bg-white border-t border-border ${
-          isMenuOpen ? 'max-h-72 opacity-100' : 'max-h-0 opacity-0 border-t-0'
+          isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0 border-t-0'
         }`}
       >
         <nav className="flex flex-col p-3 gap-0.5">
@@ -95,7 +101,11 @@ export function Header() {
             <Link
               key={link.label}
               to={link.to}
-              className="px-4 py-2.5 text-sm font-medium text-foreground hover:bg-secondary rounded-lg transition-colors"
+              className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                isActive(pathname, link.to)
+                  ? 'text-accent bg-accent/5'
+                  : 'text-foreground hover:bg-secondary'
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               {link.label}

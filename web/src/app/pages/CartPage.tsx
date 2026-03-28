@@ -23,7 +23,7 @@ export function CartPage() {
           </p>
           <button
             onClick={() => navigate('/shop')}
-            className="bg-primary text-white px-7 py-3 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors"
+            className="bg-accent text-white px-7 py-3 rounded-xl font-semibold text-sm hover:bg-accent/90 transition-colors"
           >
             Continue Shopping
           </button>
@@ -116,7 +116,7 @@ export function CartPage() {
                   <span className="text-muted-foreground">Shipping</span>
                   <span className="font-medium text-foreground">
                     {shippingCost === 0 ? (
-                      <span className="text-primary font-semibold">FREE</span>
+                      <span className="text-accent font-semibold">FREE</span>
                     ) : (
                       `$${shippingCost.toFixed(2)}`
                     )}
@@ -135,14 +135,14 @@ export function CartPage() {
               </div>
 
               {total < 500 && (
-                <div className="bg-primary/5 border border-primary/15 rounded-xl p-3 mb-5 text-xs">
-                  <p className="text-primary font-medium">
+                <div className="bg-accent/5 border border-accent/15 rounded-xl p-3 mb-5 text-xs">
+                  <p className="text-accent font-medium">
                     Add ${(500 - total).toFixed(2)} more for free shipping!
                   </p>
                 </div>
               )}
 
-              <button className="w-full bg-primary text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors mb-2.5">
+              <button className="w-full bg-accent text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-accent/90 transition-colors mb-2.5">
                 Proceed to Checkout
               </button>
 

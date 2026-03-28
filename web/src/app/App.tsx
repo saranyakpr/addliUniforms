@@ -19,7 +19,7 @@ export default function App() {
       {!opened && (
         <button
           onClick={open}
-          className="fixed bottom-5 right-5 z-40 flex items-center gap-2 bg-primary text-white pl-4 pr-5 py-3 rounded-full shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+          className="fixed bottom-5 right-5 z-40 flex items-center gap-2 bg-accent text-white pl-4 pr-5 py-3 rounded-full shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
         >
           <MessageCircle className="w-5 h-5" />
           <span className="text-sm font-semibold hidden sm:inline">Get a Quote</span>

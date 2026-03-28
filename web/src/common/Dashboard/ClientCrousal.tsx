@@ -1,9 +1,8 @@
 import { Carousel } from '@mantine/carousel';
 import { Image } from '@mantine/core';
 import Autoplay from 'embla-carousel-autoplay';
-import { useRef, useState, useCallback } from 'react';
-import { motion, useInView } from 'motion/react';
-import { Handshake, Award, TrendingUp } from 'lucide-react';
+import { useRef } from 'react';
+import { motion } from 'motion/react';
 
 const clients = [
     { id: 1, name: 'Client 1' },
@@ -21,119 +20,56 @@ const clients = [
     { id: 13, name: 'Client 13' },
 ];
 
-const stats = [
-    { value: '50+', label: 'Trusted Clients', icon: Handshake, color: 'bg-teal-50 text-teal-600' },
-    { value: '10+', label: 'Years of Service', icon: Award, color: 'bg-amber-50 text-amber-600' },
-    { value: '99%', label: 'Client Retention', icon: TrendingUp, color: 'bg-indigo-50 text-indigo-600' },
-];
-
 const ease = [0.25, 0.1, 0.25, 1] as const;
-
-function AnimatedCounter({ value }: { value: string }) {
-    const ref = useRef<HTMLSpanElement>(null);
-    const isInView = useInView(ref, { once: true, margin: '-40px' });
-    return (
-        <span ref={ref} className="tabular-nums">
-            {isInView ? value : '0'}
-        </span>
-    );
-}
 
 const ClientCrousal = () => {
     const autoplay = useRef(Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }));
-    const [hoveredId, setHoveredId] = useState<number | null>(null);
-
-    const handleMouseEnter = useCallback((id: number) => setHoveredId(id), []);
-    const handleMouseLeave = useCallback(() => setHoveredId(null), []);
 
     return (
-        <section className="py-14 sm:py-20 bg-gradient-to-b from-background via-white to-background overflow-hidden">
+        <section className="py-14 sm:py-20 bg-background">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Section heading */}
                 <motion.div
-                    className="text-center mb-10 sm:mb-14"
-                    initial={{ opacity: 0, y: 24 }}
+                    className="text-center mb-8 sm:mb-12"
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.5, ease }}
+                    transition={{ duration: 0.4, ease }}
                 >
-                    <span className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                        <Handshake className="w-3.5 h-3.5" />
-                        Our Partners
-                    </span>
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-3">
-                        Trusted by Industry Leaders
+                    <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">
+                        Our Clients
                     </h2>
                     <p className="text-muted-foreground text-sm sm:text-base max-w-lg mx-auto">
-                        Companies across the country rely on us for quality, consistency, and on-time delivery.
+                        We are proud to work with schools, hospitals, hotels, and companies across the country.
                     </p>
                 </motion.div>
 
-                {/* Stats cards */}
-                <div className="grid grid-cols-3 gap-3 sm:gap-5 mb-10 sm:mb-14 max-w-2xl mx-auto">
-                    {stats.map((stat, i) => (
-                        <motion.div
-                            key={stat.label}
-                            className="bg-white rounded-2xl border border-border p-4 sm:p-5 text-center hover:shadow-md hover:shadow-black/5 transition-shadow duration-300"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-40px' }}
-                            transition={{ duration: 0.4, delay: i * 0.1, ease }}
-                        >
-                            <div className={`inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${stat.color} mb-2.5`}>
-                                <stat.icon className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={1.8} />
-                            </div>
-                            <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-none mb-1">
-                                <AnimatedCounter value={stat.value} />
-                            </p>
-                            <p className="text-[11px] sm:text-xs text-muted-foreground tracking-wide">
-                                {stat.label}
-                            </p>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Carousel with fade edges */}
+                {/* Carousel */}
                 <motion.div
                     className="relative"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, margin: '-40px' }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                    {/* Fade edges */}
-                    <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+                    <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
                     <Carousel
                         withIndicators={false}
-                        height={95}
-                        slideSize={{ base: '42%', xs: '32%', sm: '24%', md: '19%', lg: '16%' }}
+                        height={90}
+                        slideSize={{ base: '40%', xs: '30%', sm: '22%', md: '18%', lg: '15%' }}
                         withControls={false}
-                        slideGap={{ base: 10, sm: 14 }}
+                        slideGap={{ base: 12, sm: 16 }}
                         emblaOptions={{ loop: true, align: 'start', slidesToScroll: 1 }}
                         plugins={[autoplay.current]}
                     >
                         {clients.map((client) => (
                             <Carousel.Slide key={client.id}>
-                                <div
-                                    className={`
-                                        group flex items-center justify-center h-full
-                                        rounded-xl bg-white/80 border
-                                        transition-all duration-300 cursor-pointer
-                                        ${hoveredId === client.id
-                                            ? 'border-primary/25 shadow-md shadow-primary/5'
-                                            : 'border-border/40'
-                                        }
-                                        ${hoveredId !== null && hoveredId !== client.id ? 'opacity-30' : 'opacity-100'}
-                                    `}
-                                    onMouseEnter={() => handleMouseEnter(client.id)}
-                                    onMouseLeave={handleMouseLeave}
-                                >
-                                    <div className="transition-all duration-300 group-hover:scale-105">
+                                <div className="group flex items-center justify-center h-full rounded-xl border border-border bg-white hover:shadow-md hover:shadow-black/5 hover:border-accent/20 transition-all duration-300 cursor-pointer">
+                                    <div className="transition-transform duration-300 group-hover:scale-105">
                                         <Image
                                             radius="sm"
-                                            h={55}
+                                            h={50}
                                             w="auto"
                                             fit="contain"
                                             src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-9.png"
@@ -146,16 +82,24 @@ const ClientCrousal = () => {
                     </Carousel>
                 </motion.div>
 
-                {/* Bottom tagline */}
-                <motion.p
-                    className="text-center text-xs sm:text-sm text-muted-foreground mt-6 sm:mt-8"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                    Partnering with businesses in corporate, hospitality, healthcare, and more.
-                </motion.p>
+                {/* Stats row */}
+                <div className="flex flex-wrap justify-center gap-8 sm:gap-14 mt-8 sm:mt-12 pt-8 sm:pt-10 border-t border-border">
+                    {[
+                        { value: '50+', label: 'Partner Organizations' },
+                        { value: '10K+', label: 'Uniforms Delivered' },
+                        { value: '99%', label: 'Client Satisfaction' },
+                        { value: '10+', label: 'Years Experience' },
+                    ].map((s) => (
+                        <div key={s.label} className="text-center">
+                            <p className="text-xl sm:text-2xl font-bold text-accent leading-none">
+                                {s.value}
+                            </p>
+                            <p className="text-[11px] sm:text-xs text-muted-foreground mt-1.5">
+                                {s.label}
+                            </p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );
