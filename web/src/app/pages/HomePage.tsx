@@ -57,8 +57,8 @@ export function HomePage() {
         {/* Image — positioned absolute on right half, fills full height */}
         <div className="absolute top-0 bottom-0 right-0 w-1/2 hidden lg:block">
           <motion.img
-            src="https://images.unsplash.com/photo-1761522001672-5f1d45ce1b10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBtZW4lMjBmYXNoaW9uJTIwbW9kZWwlMjBzdWl0fGVufDF8fHx8MTc3MDgwNTI3M3ww&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Professional uniforms"
+            src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+            alt="Man wearing a professional shirt"
             className="w-full h-full object-cover object-top"
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}

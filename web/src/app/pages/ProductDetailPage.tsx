@@ -6,6 +6,16 @@ import { useCart } from '../context/CartContext';
 import { toast } from 'sonner';
 import { ProductCard } from '../components/ProductCard';
 
+// Generate gallery views from the main product image
+function getGalleryImages(mainImage: string) {
+  return [
+    { label: 'Main', src: mainImage },
+    { label: 'Front View', src: mainImage + '&crop=top&h=800' },
+    { label: 'Back View', src: mainImage + '&crop=bottom&h=800' },
+    { label: 'Side View', src: mainImage + '&crop=left&h=800' },
+  ];
+}
+
 export function ProductDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -15,6 +25,7 @@ export function ProductDetailPage() {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
 
   if (!product) {
     return (
@@ -31,6 +42,8 @@ export function ProductDetailPage() {
       </div>
     );
   }
+
+  const gallery = getGalleryImages(product.image);
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -60,33 +73,68 @@ export function ProductDetailPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-        {/* Back */}
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 text-sm font-medium transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back</span>
-        </button>
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+          <button
+            onClick={() => navigate('/')}
+            className="hover:text-foreground transition-colors"
+          >
+            Home
+          </button>
+          <span>/</span>
+          <button
+            onClick={() => navigate('/shop')}
+            className="hover:text-foreground transition-colors"
+          >
+            Products
+          </button>
+          <span>/</span>
+          <span className="text-foreground font-medium truncate">{product.name}</span>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Image */}
-          <div className="relative">
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-secondary">
+          {/* ─── Image Gallery ─── */}
+          <div>
+            {/* Main image */}
+            <div className="relative rounded-2xl overflow-hidden bg-secondary aspect-[3/4] mb-3">
               <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover"
+                src={gallery[activeImage].src}
+                alt={`${product.name} - ${gallery[activeImage].label}`}
+                className="w-full h-full object-cover transition-opacity duration-300"
               />
+              {discount > 0 && (
+                <span className="absolute top-3 left-3 bg-red-500 text-white px-2.5 py-1 rounded-lg text-xs font-semibold">
+                  Save {discount}%
+                </span>
+              )}
             </div>
-            {discount > 0 && (
-              <span className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1.5 rounded-lg text-sm font-semibold">
-                Save {discount}%
-              </span>
-            )}
+
+            {/* Thumbnails */}
+            <div className="grid grid-cols-4 gap-2">
+              {gallery.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImage(i)}
+                  className={`relative rounded-xl overflow-hidden aspect-square bg-secondary border-2 transition-all ${
+                    activeImage === i
+                      ? 'border-accent ring-1 ring-accent/30'
+                      : 'border-transparent hover:border-border'
+                  }`}
+                >
+                  <img
+                    src={img.src}
+                    alt={img.label}
+                    className="w-full h-full object-cover"
+                  />
+                  <span className="absolute bottom-0 inset-x-0 bg-black/50 text-white text-[9px] sm:text-[10px] text-center py-0.5 font-medium">
+                    {img.label}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Info */}
+          {/* ─── Product Info ─── */}
           <div className="flex flex-col">
             <span className="text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-2">
               {product.category}
@@ -96,13 +144,13 @@ export function ProductDetailPage() {
             </h1>
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
                     className={`w-4 h-4 ${
                       i < Math.floor(product.rating)
-                        ? 'fill-accent text-accent'
+                        ? 'fill-amber-400 text-amber-400'
                         : 'text-border'
                     }`}
                   />
@@ -126,29 +174,11 @@ export function ProductDetailPage() {
               {product.description}
             </p>
 
-            {/* Size */}
-            <div className="mb-5">
-              <label className="block text-sm font-semibold text-foreground mb-2.5">Size</label>
-              <div className="flex flex-wrap gap-2">
-                {product.sizes.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`min-w-[44px] px-4 py-2 border-2 rounded-xl text-sm font-medium transition-colors ${
-                      selectedSize === size
-                        ? 'border-accent bg-accent text-white'
-                        : 'border-border hover:border-accent/40'
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             {/* Color */}
             <div className="mb-5">
-              <label className="block text-sm font-semibold text-foreground mb-2.5">Color</label>
+              <label className="block text-sm font-semibold text-foreground mb-2.5">
+                Color: <span className="font-normal text-muted-foreground">{selectedColor || 'Select'}</span>
+              </label>
               <div className="flex flex-wrap gap-2">
                 {product.colors.map((color) => (
                   <button
@@ -169,23 +199,43 @@ export function ProductDetailPage() {
               </div>
             </div>
 
-            {/* Quantity */}
-            <div className="mb-7">
-              <label className="block text-sm font-semibold text-foreground mb-2.5">Quantity</label>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-10 h-10 border border-border rounded-xl hover:bg-secondary transition-colors text-foreground"
-                >
-                  -
-                </button>
-                <span className="font-semibold w-10 text-center text-foreground">{quantity}</span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="w-10 h-10 border border-border rounded-xl hover:bg-secondary transition-colors text-foreground"
-                >
-                  +
-                </button>
+            {/* Size + Quantity row */}
+            <div className="flex flex-col sm:flex-row gap-5 mb-7">
+              <div className="flex-1">
+                <label className="block text-sm font-semibold text-foreground mb-2.5">Size</label>
+                <div className="flex flex-wrap gap-2">
+                  {product.sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`min-w-[44px] px-4 py-2 border-2 rounded-xl text-sm font-medium transition-colors ${
+                        selectedSize === size
+                          ? 'border-accent bg-accent text-white'
+                          : 'border-border hover:border-accent/40'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2.5">Quantity</label>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-10 h-10 border border-border rounded-xl hover:bg-secondary transition-colors text-foreground"
+                  >
+                    -
+                  </button>
+                  <span className="font-semibold w-10 text-center text-foreground">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="w-10 h-10 border border-border rounded-xl hover:bg-secondary transition-colors text-foreground"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -194,7 +244,7 @@ export function ProductDetailPage() {
               onClick={handleAddToCart}
               className="w-full bg-accent text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-accent/90 transition-colors mb-4"
             >
-              Add to Cart — ${product.price * quantity}
+              Add to Quotation — ${product.price * quantity}
             </button>
 
             {/* Trust */}
@@ -221,12 +271,15 @@ export function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Related */}
+        {/* ─── Suggested Products ─── */}
         {relatedProducts.length > 0 && (
-          <div className="mt-16 sm:mt-20">
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground tracking-tight mb-6">
-              You May Also Like
+          <div className="mt-16 sm:mt-20 pt-10 border-t border-border">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground tracking-tight mb-2">
+              Related Products
             </h2>
+            <p className="text-muted-foreground text-sm mb-6">
+              More options from the {product.category} collection you might like.
+            </p>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {relatedProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
