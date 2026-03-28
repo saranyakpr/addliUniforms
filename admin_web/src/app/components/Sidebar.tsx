@@ -4,7 +4,7 @@ import {
   Package,
   Users,
   BarChart3,
-  Settings,
+
   Tags,
   TrendingUp
 } from 'lucide-react';
@@ -28,13 +28,13 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   ];
 
   return (
-    <div className="w-64 bg-slate-900 text-white min-h-screen fixed left-0 top-0">
+    <div className="w-64 bg-primary text-primary-foreground min-h-screen fixed left-0 top-0">
       <div className="p-6">
         <div className="flex items-center gap-2 mb-8">
-          <ShoppingBag className="w-8 h-8 text-pink-400" />
+          <ShoppingBag className="w-8 h-8 text-accent" />
           <div>
             <h1 className="text-xl font-semibold">Addli Uniforms</h1>
-            <p className="text-xs text-slate-400">Admin Portal</p>
+            <p className="text-xs text-primary-foreground/60">Admin Portal</p>
           </div>
         </div>
 
@@ -48,8 +48,8 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive
-                  ? 'bg-pink-600 text-white'
-                  : 'text-slate-300 hover:bg-slate-800'
+                  ? 'bg-accent text-accent-foreground'
+                  : 'text-primary-foreground/70 hover:bg-primary-foreground/10'
                   }`}
               >
                 <Icon className="w-5 h-5" />

@@ -16,13 +16,13 @@ export function Dashboard() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Delivered':
-        return 'bg-green-100 text-green-700 border-green-200';
+        return 'bg-emerald-50 text-emerald-700 border-emerald-200';
       case 'Processing':
-        return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+        return 'bg-amber-50 text-amber-700 border-amber-200';
       case 'Shipped':
-        return 'bg-blue-100 text-blue-700 border-blue-200';
+        return 'bg-sky-50 text-sky-700 border-sky-200';
       default:
-        return 'bg-slate-100 text-slate-700 border-slate-200';
+        return 'bg-muted text-muted-foreground border-border';
     }
   };
 
@@ -37,8 +37,8 @@ export function Dashboard() {
           change="+23.5%"
           changeType="increase"
           icon={DollarSign}
-          iconBgColor="bg-pink-100"
-          iconColor="text-pink-600"
+          iconBgColor="bg-amber-100"
+          iconColor="text-amber-700"
         />
         <StatsCard
           title="Total Orders"
@@ -46,8 +46,8 @@ export function Dashboard() {
           change="+18.2%"
           changeType="increase"
           icon={ShoppingCart}
-          iconBgColor="bg-purple-100"
-          iconColor="text-purple-600"
+          iconBgColor="bg-teal-100"
+          iconColor="text-teal-700"
         />
         <StatsCard
           title="Total Customers"
@@ -55,8 +55,8 @@ export function Dashboard() {
           change="+12.8%"
           changeType="increase"
           icon={Users}
-          iconBgColor="bg-blue-100"
-          iconColor="text-blue-600"
+          iconBgColor="bg-sky-100"
+          iconColor="text-sky-700"
         />
         <StatsCard
           title="Total Products"
@@ -64,27 +64,27 @@ export function Dashboard() {
           change="+5.4%"
           changeType="increase"
           icon={Package}
-          iconBgColor="bg-cyan-100"
-          iconColor="text-cyan-600"
+          iconBgColor="bg-stone-100"
+          iconColor="text-stone-700"
         />
       </div>
 
       {/* Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Sales Overview */}
-        <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="lg:col-span-2 bg-card rounded-xl shadow-sm border border-border p-6">
           <div className="mb-4">
-            <h3 className="text-lg font-semibold text-slate-900">Sales Overview</h3>
-            <p className="text-sm text-slate-500">Revenue trends for 2026</p>
+            <h3 className="text-lg font-semibold text-foreground">Sales Overview</h3>
+            <p className="text-sm text-muted-foreground">Revenue trends for 2026</p>
           </div>
           <div id="sales-chart" className="h-[300px]"></div>
         </div>
 
         {/* Category Breakdown */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
           <div className="mb-4">
-            <h3 className="text-lg font-semibold text-slate-900">Category Sales</h3>
-            <p className="text-sm text-slate-500">Distribution by category</p>
+            <h3 className="text-lg font-semibold text-foreground">Category Sales</h3>
+            <p className="text-sm text-muted-foreground">Distribution by category</p>
           </div>
           <div id="category-chart" className="h-[300px]"></div>
         </div>
@@ -93,68 +93,68 @@ export function Dashboard() {
       {/* Charts Row 2 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Monthly Revenue */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
           <div className="mb-4">
-            <h3 className="text-lg font-semibold text-slate-900">Monthly Revenue</h3>
-            <p className="text-sm text-slate-500">Last 6 months performance</p>
+            <h3 className="text-lg font-semibold text-foreground">Monthly Revenue</h3>
+            <p className="text-sm text-muted-foreground">Last 6 months performance</p>
           </div>
           <div id="revenue-chart" className="h-[280px]"></div>
         </div>
 
         {/* Orders Growth */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
           <div className="mb-4">
-            <h3 className="text-lg font-semibold text-slate-900">Weekly Orders</h3>
-            <p className="text-sm text-slate-500">Orders trend this month</p>
+            <h3 className="text-lg font-semibold text-foreground">Weekly Orders</h3>
+            <p className="text-sm text-muted-foreground">Orders trend this month</p>
           </div>
           <div id="orders-chart" className="h-[280px]"></div>
         </div>
       </div>
 
       {/* Recent Orders Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <div className="p-6 border-b border-slate-200">
-          <h3 className="text-lg font-semibold text-slate-900">Recent Orders</h3>
-          <p className="text-sm text-slate-500">Latest customer orders</p>
+      <div className="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+        <div className="p-6 border-b border-border">
+          <h3 className="text-lg font-semibold text-foreground">Recent Orders</h3>
+          <p className="text-sm text-muted-foreground">Latest customer orders</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-slate-50">
+            <thead className="bg-secondary">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Order ID
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Customer
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Product
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Amount
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Date
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-slate-200">
+            <tbody className="bg-card divide-y divide-border">
               {recentOrders.map((order) => (
-                <tr key={order.id} className="hover:bg-slate-50 transition-colors">
+                <tr key={order.id} className="hover:bg-secondary transition-colors">
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm font-medium text-slate-900">{order.id}</span>
+                    <span className="text-sm font-medium text-foreground">{order.id}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-slate-700">{order.customer}</span>
+                    <span className="text-sm text-foreground/80">{order.customer}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-slate-700">{order.product}</span>
+                    <span className="text-sm text-foreground/80">{order.product}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm font-medium text-slate-900">{order.amount}</span>
+                    <span className="text-sm font-medium text-foreground">{order.amount}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium border ${getStatusColor(order.status)}`}>
@@ -162,7 +162,7 @@ export function Dashboard() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-slate-500">{order.date}</span>
+                    <span className="text-sm text-muted-foreground">{order.date}</span>
                   </td>
                 </tr>
               ))}

@@ -8,7 +8,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       <Header />
 
@@ -16,8 +16,8 @@ export default function App() {
         {
           activeTab !== 'enquiries' && <>
             <div className="mb-6">
-              <h1 className="text-2xl font-semibold text-slate-900">Dashboard</h1>
-              <p className="text-slate-600">Welcome back! Here's what's happening with your store today.</p>
+              <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
+              <p className="text-muted-foreground">Welcome back! Here's what's happening with your store today.</p>
             </div>
           </>
         }
@@ -25,11 +25,11 @@ export default function App() {
         {activeTab === 'dashboard' && <Dashboard />}
 
         {(activeTab !== 'dashboard' && activeTab !== 'enquiries') && (
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-12 text-center">
-            <h2 className="text-xl font-semibold text-slate-900 mb-2">
+          <div className="bg-card rounded-xl shadow-sm border border-border p-12 text-center">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Section
             </h2>
-            <p className="text-slate-500">This section is under development.</p>
+            <p className="text-muted-foreground">This section is under development.</p>
           </div>
         )}
 

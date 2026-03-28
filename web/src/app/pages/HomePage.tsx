@@ -22,7 +22,7 @@ import { ClientCrousal } from '../../common/Dashboard/ClientCrousal';
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
 const uniformCategories = [
-  { icon: GraduationCap, label: 'School', color: 'bg-blue-50 text-blue-600 border-blue-100' },
+  { icon: GraduationCap, label: 'School', color: 'bg-sky-50 text-sky-700 border-sky-100' },
   { icon: Building2, label: 'Corporate', color: 'bg-slate-50 text-slate-600 border-slate-100' },
   { icon: Stethoscope, label: 'Healthcare', color: 'bg-emerald-50 text-emerald-600 border-emerald-100' },
   { icon: Hotel, label: 'Hospitality', color: 'bg-amber-50 text-amber-600 border-amber-100' },
@@ -75,7 +75,7 @@ export function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease }}
             >
-              <span className="inline-flex items-center gap-1.5 bg-white/10 text-blue-200 text-xs font-medium px-3 py-1 rounded-full mb-5 backdrop-blur-sm border border-white/10">
+              <span className="inline-flex items-center gap-1.5 bg-white/10 text-white/70 text-xs font-medium px-3 py-1 rounded-full mb-5 backdrop-blur-sm border border-white/10">
                 <CheckCircle className="w-3.5 h-3.5" />
                 Trusted by 50+ organizations nationwide
               </span>
@@ -93,7 +93,7 @@ export function HomePage() {
             </motion.h1>
 
             <motion.p
-              className="text-blue-100/70 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 max-w-md"
+              className="text-white/60 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 max-w-md"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease }}
@@ -137,7 +137,7 @@ export function HomePage() {
               ].map((s) => (
                 <div key={s.label}>
                   <p className="text-xl sm:text-2xl font-bold text-white leading-none">{s.value}</p>
-                  <p className="text-[11px] sm:text-xs text-blue-200/60 mt-1">{s.label}</p>
+                  <p className="text-[11px] sm:text-xs text-white/40 mt-1">{s.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -208,7 +208,7 @@ export function HomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
               Our Uniform Categories
             </h2>
-            <p className="text-blue-100/60 text-sm sm:text-base max-w-lg mx-auto">
+            <p className="text-white/50 text-sm sm:text-base max-w-lg mx-auto">
               Craft the perfect look for any profession and industry.
             </p>
           </motion.div>
@@ -361,26 +361,26 @@ export function HomePage() {
       </section>
 
       {/* ─── CTA BANNER ─── */}
-      <section className="py-10 sm:py-14 bg-accent">
+      <section className="py-14 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-between gap-4"
+            className="bg-primary rounded-2xl px-6 sm:px-10 lg:px-14 py-10 sm:py-12 flex flex-col sm:flex-row items-center justify-between gap-6"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.4, ease }}
           >
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-1">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
                 Have a Question or Need a Custom Order?
               </h2>
-              <p className="text-blue-100/80 text-sm">
+              <p className="text-white/60 text-sm sm:text-base">
                 Our uniform consultants are ready to help you find the perfect fit.
               </p>
             </div>
             <Link
               to="#"
-              className="shrink-0 bg-white text-accent px-6 py-3 rounded-lg font-semibold text-sm hover:bg-white/90 transition-colors"
+              className="shrink-0 bg-accent text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-accent/90 transition-colors"
             >
               Get in Touch
             </Link>
