@@ -51,56 +51,95 @@ export function HomePage() {
     <div className="min-h-screen bg-background">
       {/* ─── HERO ─── */}
       <section className="relative bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.15)_0%,transparent_60%)]" />
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,0.08)_0%,transparent_50%)]" />
+
+        {/* Image — positioned absolute on right half, fills full height */}
+        <div className="absolute top-0 bottom-0 right-0 w-1/2 hidden lg:block">
+          <motion.img
+            src="https://images.unsplash.com/photo-1761522001672-5f1d45ce1b10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBtZW4lMjBmYXNoaW9uJTIwbW9kZWwlMjBzdWl0fGVufDF8fHx8MTc3MDgwNTI3M3ww&ixlib=rb-4.1.0&q=80&w=1080"
+            alt="Professional uniforms"
+            className="w-full h-full object-cover object-top"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease }}
+          />
+          {/* Gradient overlay blending image into the navy background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/40 to-transparent" />
         </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-14 sm:py-16 lg:py-20">
-            {/* Text */}
+          <div className="lg:w-1/2 py-16 sm:py-20 lg:py-24">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease }}
             >
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] tracking-tight mb-5">
-                Quality Uniforms for
-                <span className="text-accent"> Every Profession</span>
-              </h1>
-              <p className="text-blue-100/80 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 max-w-lg">
-                From corporate offices to classrooms and hospitals — we design,
-                manufacture, and deliver premium uniforms your team will be proud to wear.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  to="/shop"
-                  className="group inline-flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-accent/90 transition-colors"
-                >
-                  Explore Products
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-                <Link
-                  to="#"
-                  className="inline-flex items-center justify-center gap-2 border border-white/25 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-white/10 transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </div>
+              <span className="inline-flex items-center gap-1.5 bg-white/10 text-blue-200 text-xs font-medium px-3 py-1 rounded-full mb-5 backdrop-blur-sm border border-white/10">
+                <CheckCircle className="w-3.5 h-3.5" />
+                Trusted by 50+ organizations nationwide
+              </span>
             </motion.div>
 
-            {/* Image */}
-            <motion.div
-              className="relative hidden lg:block"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.15, ease }}
+            <motion.h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.12] tracking-tight mb-5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease }}
             >
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] max-h-[440px]">
-                <img
-                  src="https://images.unsplash.com/photo-1761522001672-5f1d45ce1b10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBtZW4lMjBmYXNoaW9uJTIwbW9kZWwlMjBzdWl0fGVufDF8fHx8MTc3MDgwNTI3M3ww&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Professional uniforms"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              Quality Uniforms
+              <br />
+              for <span className="text-accent">Every Profession</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-blue-100/70 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 max-w-md"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease }}
+            >
+              From corporate offices to classrooms and hospitals — we design,
+              manufacture, and deliver premium uniforms your team will be proud to wear.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-3 mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3, ease }}
+            >
+              <Link
+                to="/shop"
+                className="group inline-flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-accent/90 transition-colors"
+              >
+                Explore Products
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+              <Link
+                to="#"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/15 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-white/15 backdrop-blur-sm transition-colors"
+              >
+                Contact Us
+              </Link>
+            </motion.div>
+
+            {/* Mini stats */}
+            <motion.div
+              className="flex gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              {[
+                { value: '50+', label: 'Clients' },
+                { value: '10K+', label: 'Delivered' },
+                { value: '99%', label: 'Satisfaction' },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p className="text-xl sm:text-2xl font-bold text-white leading-none">{s.value}</p>
+                  <p className="text-[11px] sm:text-xs text-blue-200/60 mt-1">{s.label}</p>
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
