@@ -281,7 +281,7 @@ export function HomePage() {
       </section>
 
       {/* ─── OUR JOURNEY ─── */}
-      <section className="py-14 sm:py-20 bg-secondary/50">
+      {/* <section className="py-14 sm:py-20 bg-secondary/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-10 sm:mb-14"
@@ -325,7 +325,7 @@ export function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ─── CLIENTS ─── */}
       <ClientCrousal />
