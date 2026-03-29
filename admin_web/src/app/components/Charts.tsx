@@ -61,9 +61,9 @@ function renderCharts() {
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       },
-      colors: ['#b5894e'],
+      colors: ['#c2185b'],
       grid: {
-        borderColor: '#eae7e1',
+        borderColor: '#f0cdd6',
       },
       tooltip: {
         y: {
@@ -86,7 +86,7 @@ function renderCharts() {
       },
       series: [185, 142, 128, 115, 114],
       labels: ['Evening Dresses', 'Casual Dresses', 'Party Dresses', 'Maxi Dresses', 'Summer Dresses'],
-      colors: ['#b5894e', '#5b8a72', '#7c6daa', '#c97d4e', '#c27085'],
+      colors: ['#c2185b', '#8e4585', '#d4727e', '#a0527d', '#6b1d3a'],
       legend: {
         position: 'bottom',
       },
@@ -141,9 +141,9 @@ function renderCharts() {
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
       },
-      colors: ['#b5894e'],
+      colors: ['#6b1d3a'],
       grid: {
-        borderColor: '#eae7e1',
+        borderColor: '#f0cdd6',
       },
       tooltip: {
         y: {
@@ -178,9 +178,9 @@ function renderCharts() {
       xaxis: {
         categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
       },
-      colors: ['#1b2e3c'],
+      colors: ['#8e4585'],
       grid: {
-        borderColor: '#eae7e1',
+        borderColor: '#f0cdd6',
       },
       tooltip: {
         y: {

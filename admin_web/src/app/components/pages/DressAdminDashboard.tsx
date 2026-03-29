@@ -28,30 +28,30 @@ const INITIAL_ORDERS: Order[] = [
 const ALL_STATUSES: Status[] = ["New", "In Review", "Approved", "In Production", "Rejected"];
 
 const STATUS_STYLES: Record<Status, { badge: string; dot: string; row: string }> = {
-  "New": { badge: "bg-amber-50 text-amber-800 border border-amber-200", dot: "bg-amber-500", row: "" },
-  "In Review": { badge: "bg-orange-50 text-orange-700 border border-orange-200", dot: "bg-orange-400", row: "" },
+  "New": { badge: "bg-rose-50 text-rose-800 border border-rose-200", dot: "bg-rose-500", row: "" },
+  "In Review": { badge: "bg-purple-50 text-purple-700 border border-purple-200", dot: "bg-purple-400", row: "" },
   "Approved": { badge: "bg-emerald-50 text-emerald-700 border border-emerald-200", dot: "bg-emerald-500", row: "" },
-  "In Production": { badge: "bg-sky-50 text-sky-700 border border-sky-200", dot: "bg-sky-500", row: "" },
+  "In Production": { badge: "bg-blue-50 text-blue-700 border border-blue-200", dot: "bg-blue-500", row: "" },
   "Rejected": { badge: "bg-red-50 text-red-700 border border-red-200", dot: "bg-red-500", row: "" },
 };
 
 const STAT_CARD_STYLES: Record<Status, { active: string; count: string }> = {
-  "New": { active: "bg-amber-600 text-white shadow-amber-200 shadow-lg border-amber-600", count: "text-amber-600" },
-  "In Review": { active: "bg-orange-500 text-white shadow-orange-200 shadow-lg border-orange-500", count: "text-orange-500" },
+  "New": { active: "bg-rose-600 text-white shadow-rose-200 shadow-lg border-rose-600", count: "text-rose-600" },
+  "In Review": { active: "bg-purple-500 text-white shadow-purple-200 shadow-lg border-purple-500", count: "text-purple-500" },
   "Approved": { active: "bg-emerald-600 text-white shadow-emerald-200 shadow-lg border-emerald-600", count: "text-emerald-600" },
-  "In Production": { active: "bg-sky-600 text-white shadow-sky-200 shadow-lg border-sky-600", count: "text-sky-600" },
+  "In Production": { active: "bg-blue-600 text-white shadow-blue-200 shadow-lg border-blue-600", count: "text-blue-600" },
   "Rejected": { active: "bg-red-500 text-white shadow-red-200 shadow-lg border-red-500", count: "text-red-500" },
 };
 
 const AVATAR_COLORS = [
-  "bg-amber-100 text-amber-700",
+  "bg-rose-100 text-rose-700",
+  "bg-pink-100 text-pink-700",
+  "bg-fuchsia-100 text-fuchsia-700",
+  "bg-purple-100 text-purple-700",
   "bg-red-100 text-red-700",
-  "bg-orange-100 text-orange-700",
+  "bg-violet-100 text-violet-700",
   "bg-emerald-100 text-emerald-700",
-  "bg-sky-100 text-sky-700",
-  "bg-teal-100 text-teal-700",
-  "bg-stone-100 text-stone-700",
-  "bg-yellow-100 text-yellow-700",
+  "bg-blue-100 text-blue-700",
 ];
 const avatarColor = (name: string) => AVATAR_COLORS[name.charCodeAt(0) % AVATAR_COLORS.length];
 const initials = (name: string) => name.split(" ").map((n) => n[0]).join("").toUpperCase();
@@ -59,10 +59,10 @@ const initials = (name: string) => name.split(" ").map((n) => n[0]).join("").toU
 const SortIcon = ({ active, dir }: { active: boolean; dir: "asc" | "desc" }) => (
   <span className="inline-flex flex-col ml-1 gap-px">
     <svg width="7" height="5" viewBox="0 0 7 5" className={active && dir === "asc" ? "opacity-100" : "opacity-25"}>
-      <path d="M3.5 0L7 5H0z" fill={active && dir === "asc" ? "#b5894e" : "#7a756d"} />
+      <path d="M3.5 0L7 5H0z" fill={active && dir === "asc" ? "#c2185b" : "#8c6b78"} />
     </svg>
     <svg width="7" height="5" viewBox="0 0 7 5" className={active && dir === "desc" ? "opacity-100" : "opacity-25"}>
-      <path d="M3.5 5L0 0h7z" fill={active && dir === "desc" ? "#b5894e" : "#7a756d"} />
+      <path d="M3.5 5L0 0h7z" fill={active && dir === "desc" ? "#c2185b" : "#8c6b78"} />
     </svg>
   </span>
 );
@@ -185,7 +185,7 @@ export default function DressAdminDashboard() {
             <h1 className="text-3xl font-bold text-foreground tracking-tight">Order Dashboard</h1>
             <p className="text-sm text-muted-foreground mt-1">Review, approve and track all custom dress & uniform orders</p>
           </div>
-          <button className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md shadow-amber-200 transition-all duration-150 active:scale-95 self-start sm:self-auto">
+          <button className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md shadow-rose-200 transition-all duration-150 active:scale-95 self-start sm:self-auto">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M7 1v12M1 7h12" stroke="white" strokeWidth="2" strokeLinecap="round" />
             </svg>
@@ -225,8 +225,8 @@ export default function DressAdminDashboard() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-5 py-4 border-b border-border/60">
             <div className="relative w-full sm:w-72">
               <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                <circle cx="6.5" cy="6.5" r="4.5" stroke="#7a756d" strokeWidth="1.4" />
-                <path d="M10 10l3 3" stroke="#7a756d" strokeWidth="1.4" strokeLinecap="round" />
+                <circle cx="6.5" cy="6.5" r="4.5" stroke="#8c6b78" strokeWidth="1.4" />
+                <path d="M10 10l3 3" stroke="#8c6b78" strokeWidth="1.4" strokeLinecap="round" />
               </svg>
               <input
                 value={search}
@@ -239,11 +239,11 @@ export default function DressAdminDashboard() {
               {filterStatus !== "All" && (
                 <button
                   onClick={() => setFilterStatus("All")}
-                  className="flex items-center gap-1.5 text-xs font-medium text-accent bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200 hover:bg-amber-100 transition-colors"
+                  className="flex items-center gap-1.5 text-xs font-medium text-accent bg-rose-50 px-3 py-1.5 rounded-full border border-rose-200 hover:bg-rose-100 transition-colors"
                 >
                   <span>{filterStatus}</span>
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M2 2l6 6M8 2l-6 6" stroke="#b5894e" strokeWidth="1.4" strokeLinecap="round" />
+                    <path d="M2 2l6 6M8 2l-6 6" stroke="#c2185b" strokeWidth="1.4" strokeLinecap="round" />
                   </svg>
                 </button>
               )}
@@ -282,7 +282,7 @@ export default function DressAdminDashboard() {
                   <tr key={order.id} className="hover:bg-secondary/60 transition-colors duration-100 group">
                     {/* Order ID */}
                     <td className="px-4 py-3.5">
-                      <div className="text-xs font-mono font-semibold text-accent bg-amber-50 border border-amber-100 rounded-lg px-2 py-1 inline-block whitespace-nowrap">
+                      <div className="text-xs font-mono font-semibold text-accent bg-rose-50 border border-rose-100 rounded-lg px-2 py-1 inline-block whitespace-nowrap">
                         {order.id}
                       </div>
                     </td>
@@ -387,7 +387,7 @@ export default function DressAdminDashboard() {
                 <button
                   key={p}
                   className={`w-8 h-8 rounded-lg text-xs font-semibold transition-all ${p === 1
-                    ? "bg-accent text-accent-foreground shadow-sm shadow-amber-200"
+                    ? "bg-accent text-accent-foreground shadow-sm shadow-rose-200"
                     : "border border-border bg-card text-muted-foreground hover:border-accent/50 hover:text-accent"
                     }`}
                 >
