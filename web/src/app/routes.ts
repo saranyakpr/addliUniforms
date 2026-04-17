@@ -4,6 +4,7 @@ import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CartPage } from './pages/CartPage';
+import QuotationPage from './pages/QuotationPage';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: 'cart',
         Component: CartPage,
+      },
+      {
+        path: 'quotation',
+        Component: QuotationPage,
       },
     ],
   },

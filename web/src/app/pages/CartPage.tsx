@@ -142,8 +142,9 @@ export function CartPage() {
                 </div>
               )}
 
-              <button className="w-full bg-accent text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-accent/90 transition-colors mb-2.5">
-                Proceed to Checkout
+              <button onClick={() => navigate('/quotation')} className="w-full bg-accent text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-accent/90 transition-colors mb-2.5">
+                {/* Proceed to Checkout */}
+                Proceed to Quotation
               </button>
 
               <button

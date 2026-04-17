@@ -72,7 +72,7 @@ export function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1, ease }}
               >
-                Quality Uniforms
+                Quality Uniforms  checking
                 <br />
                 for <span className="text-accent">Every Profession</span>
               </motion.h1>

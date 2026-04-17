@@ -115,11 +115,10 @@ export function ProductDetailPage() {
                 <button
                   key={i}
                   onClick={() => setActiveImage(i)}
-                  className={`relative rounded-xl overflow-hidden aspect-square bg-secondary border-2 transition-all ${
-                    activeImage === i
+                  className={`relative rounded-xl overflow-hidden aspect-square bg-secondary border-2 transition-all ${activeImage === i
                       ? 'border-accent ring-1 ring-accent/30'
                       : 'border-transparent hover:border-border'
-                  }`}
+                    }`}
                 >
                   <img
                     src={img.src}
@@ -148,11 +147,10 @@ export function ProductDetailPage() {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-4 h-4 ${
-                      i < Math.floor(product.rating)
+                    className={`w-4 h-4 ${i < Math.floor(product.rating)
                         ? 'fill-amber-400 text-amber-400'
                         : 'text-border'
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -184,11 +182,10 @@ export function ProductDetailPage() {
                   <button
                     key={color}
                     onClick={() => setSelectedColor(color)}
-                    className={`relative px-4 py-2 border-2 rounded-xl text-sm font-medium transition-colors ${
-                      selectedColor === color
+                    className={`relative px-4 py-2 border-2 rounded-xl text-sm font-medium transition-colors ${selectedColor === color
                         ? 'border-accent bg-accent text-white'
                         : 'border-border hover:border-accent/40'
-                    }`}
+                      }`}
                   >
                     {color}
                     {selectedColor === color && (
@@ -208,11 +205,10 @@ export function ProductDetailPage() {
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`min-w-[44px] px-4 py-2 border-2 rounded-xl text-sm font-medium transition-colors ${
-                        selectedSize === size
+                      className={`min-w-[44px] px-4 py-2 border-2 rounded-xl text-sm font-medium transition-colors ${selectedSize === size
                           ? 'border-accent bg-accent text-white'
                           : 'border-border hover:border-accent/40'
-                      }`}
+                        }`}
                     >
                       {size}
                     </button>

@@ -2,6 +2,7 @@ import { Link, useNavigate, useLocation } from 'react-router';
 import { ShoppingCart, Search, User, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
+// Note: Images in public folder should be referenced as static URLs
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -29,12 +30,13 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-accent rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-sm sm:text-base leading-none">A</span>
-            </div>
-            <span className="text-sm sm:text-base font-bold tracking-wide text-primary uppercase">
+            <img
+              src="/images/addliLogo.png"
+              alt="Addli Logo"
+              className="h-8 sm:h-10 w-auto object-contain"
+            />
+            <span className="mt-2 text-sm sm:text-base font-bold tracking-wide text-primary uppercase">
               Addli Uniforms
             </span>
           </Link>
@@ -45,11 +47,10 @@ export function Header() {
               <Link
                 key={link.label}
                 to={link.to}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  isActive(pathname, link.to)
-                    ? 'text-accent'
-                    : 'text-muted-foreground hover:text-accent'
-                }`}
+                className={`px-3 py-2 text-sm font-medium transition-colors ${isActive(pathname, link.to)
+                  ? 'text-accent'
+                  : 'text-muted-foreground hover:text-accent'
+                  }`}
               >
                 {link.label}
               </Link>
@@ -88,30 +89,6 @@ export function Header() {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Mobile Nav */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 bg-white border-t border-border ${
-          isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0 border-t-0'
-        }`}
-      >
-        <nav className="flex flex-col p-3 gap-0.5">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.to}
-              className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                isActive(pathname, link.to)
-                  ? 'text-accent bg-accent/5'
-                  : 'text-foreground hover:bg-secondary'
-              }`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
       </div>
     </header>
   );

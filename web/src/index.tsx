@@ -1,9 +1,11 @@
 export type UniformFormValues = {
     name: string;
     groupName: string;
-    email: string;
+    emailAddress: string;
     phone: string;
-    uniformType: string | null;
+    categoryId: string | null;
     quantity: number | undefined;
-    file: File | null;
+    image: File | null;
+    requestedDeliveryDate: Date;
+    additionalDetails: string;
 };
