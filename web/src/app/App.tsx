@@ -51,7 +51,7 @@ export default function App() {
               <X className="w-4 h-4" />
             </button>
           </div>
-          <HomePageForm onSuccess={close} />
+          <HomePageForm onSuccess={close} isOpen={opened} />
         </div>
       </Drawer>
     </CartProvider>

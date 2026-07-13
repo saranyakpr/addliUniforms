@@ -1,15 +1,16 @@
 import { FileInput, NumberInput, Select, TextInput } from '@mantine/core';
 import { Upload, Users } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, Controller } from "react-hook-form";
 import { toast } from 'sonner';
 import { UniformFormValues } from '../..';
 
 interface HomePageFormProps {
     onSuccess?: () => void;
+    isOpen?: boolean;
 }
 
-const HomePageForm = ({ onSuccess }: HomePageFormProps) => {
+const HomePageForm = ({ onSuccess, isOpen }: HomePageFormProps) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const {
         register,
@@ -19,15 +20,28 @@ const HomePageForm = ({ onSuccess }: HomePageFormProps) => {
         formState: { errors, isValid }
     } = useForm<UniformFormValues>({ mode: "onChange", reValidateMode: "onChange" });
 
+    // Reset form when drawer opens
+    useEffect(() => {
+        if (isOpen) {
+            reset();
+            setIsSubmitted(false);
+        }
+    }, [isOpen, reset]);
+
     const onSubmit = (data: UniformFormValues) => {
         console.log("Form Data:", data);
+        
+        // Clear form data immediately
+        reset();
         setIsSubmitted(true);
         toast.success('Submitted Successfully');
         
-        // Close drawer after a brief delay to show the success message
+        // Close drawer after a short delay
         setTimeout(() => {
-            onSuccess?.();
-        }, 1500);
+            if (onSuccess) {
+                onSuccess();
+            }
+        }, 800);
     };
 
     return (
