@@ -152,7 +152,7 @@ const HomePageForm = ({ onSuccess, isOpen }: HomePageFormProps) => {
                 <button
                     disabled={!isValid || isSubmitted}
                     type="submit"
-                    className={`mt-5 w-full py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-200 ${
+                    className={`mt-5 w-full py-3 px-4 cursor-pointer rounded-xl font-semibold text-sm transition-all duration-200 ${
                         isValid
                             ? 'bg-accent text-white hover:bg-accent/90 active:scale-[0.98]'
                             : 'bg-muted text-muted-foreground cursor-not-allowed'
