@@ -1,18 +1,33 @@
 import { FileInput, NumberInput, Select, TextInput } from '@mantine/core';
 import { Upload, Users } from 'lucide-react';
+import { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
+import { toast } from 'sonner';
 import { UniformFormValues } from '../..';
 
-const HomePageForm = () => {
+interface HomePageFormProps {
+    onSuccess?: () => void;
+}
+
+const HomePageForm = ({ onSuccess }: HomePageFormProps) => {
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const {
         register,
         handleSubmit,
         control,
+        reset,
         formState: { errors, isValid }
     } = useForm<UniformFormValues>({ mode: "onChange", reValidateMode: "onChange" });
 
     const onSubmit = (data: UniformFormValues) => {
         console.log("Form Data:", data);
+        setIsSubmitted(true);
+        toast.success('Submitted Successfully');
+        
+        // Close drawer after a brief delay to show the success message
+        setTimeout(() => {
+            onSuccess?.();
+        }, 1500);
     };
 
     return (
@@ -28,6 +43,11 @@ const HomePageForm = () => {
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
+                {isSubmitted && (
+                    <div className="mb-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
+                        Submitted Successfully
+                    </div>
+                )}
                 <div className="flex flex-col gap-4">
                     <TextInput
                         placeholder="Your name"
@@ -102,7 +122,6 @@ const HomePageForm = () => {
                         <Controller
                             name="file"
                             control={control}
-                            rules={{ required: "File required" }}
                             render={({ field }) => (
                                 <FileInput
                                     leftSection={<Upload size={16} />}
@@ -117,7 +136,7 @@ const HomePageForm = () => {
                 </div>
 
                 <button
-                    disabled={!isValid}
+                    disabled={!isValid || isSubmitted}
                     type="submit"
                     className={`mt-5 w-full py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-200 ${
                         isValid
